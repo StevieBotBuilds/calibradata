@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalibraData — Precision Digital Solutions</title>
+    <meta name="description" content="CalibraData specializes in websites, frontend apps, SEO, security penetration testing, and AI applications. Precision-engineered digital solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy-deepest: #0a0e1a;
+            --navy-deep: #0d1326;
+            --navy: #111a33;
+            --navy-mid: #162040;
+            --navy-light: #1c2951;
+            --blue-accent: #2563eb;
+            --blue-glow: #3b82f6;
+            --blue-light: #60a5fa;
+            --blue-pale: #93c5fd;
+            --cyan-accent: #06b6d4;
+            --text-white: #f0f4ff;
+            --text-gray: #94a3c0;
+            --text-muted: #6b7fa3;
+            --gradient-hero: linear-gradient(135deg, #0a0e1a 0%, #111a33 40%, #162040 100%);
+            --gradient-card: linear-gradient(160deg, #162040 0%, #111a33 100%);
+            --glow-blue: 0 0 60px rgba(37, 99, 235, 0.15);
+            --glow-cyan: 0 0 40px rgba(6, 182, 212, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy-deepest);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ---- NAV ---- */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 14px 0;
+            background: rgba(10, 14, 26, 0.95);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: var(--text-white);
+        }
+
+        .logo span { color: var(--blue-accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text-white); }
+
+        .nav-cta {
+            padding: 10px 24px !important;
+            background: var(--blue-accent) !important;
+            color: white !important;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: all 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-glow) !important;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 32px 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            animation: drift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, -20px) rotate(2deg); }
+        }
+
+        /* Grid background */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--blue-light);
+            margin-bottom: 28px;
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--cyan-accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--blue-light) 0%, var(--cyan-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            max-width: 580px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--blue-accent);
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-glow);
+            box-shadow: 0 8px 40px rgba(37, 99, 235, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid rgba(148, 163, 192, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--blue-accent);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        /* ---- SECTIONS ---- */
+        section {
+            padding: 100px 32px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--blue-accent);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ---- SERVICES ---- */
+        .services {
+            background: var(--navy-deep);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(37, 99, 235, 0.08);
+            border-radius: 16px;
+            padding: 36px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue-accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-card:hover {
+            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: var(--glow-blue);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            border-radius: 12px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ---- WHY US ---- */
+        .why-us {
+            background: var(--navy-deepest);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--gradient-card);
+            border: 1px solid rgba(37, 99, 235, 0.08);
+            border-radius: 16px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue-light), var(--cyan-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ---- PROCESS ---- */
+        .process {
+            background: var(--navy-deep);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 40px;
+            color: var(--blue-accent);
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .step:last-child::after { display: none; }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 2px solid rgba(37, 99, 235, 0.2);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--blue-light);
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ---- TECH STACK ---- */
+        .tech {
+            background: var(--navy-deepest);
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .tech-pill {
+            padding: 12px 24px;
+            background: var(--navy-mid);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            transition: all 0.2s;
+        }
+
+        .tech-pill:hover {
+            border-color: var(--blue-accent);
+            color: var(--blue-light);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        /* ---- CTA ---- */
+        .cta {
+            background: var(--navy-deep);
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            border-radius: 24px;
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+        }
+
+        .cta-box h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .cta-box p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .cta-box .btn { position: relative; }
+
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--navy-deepest);
+            border-top: 1px solid rgba(37, 99, 235, 0.08);
+            padding: 60px 32px 32px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--blue-light); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(37, 99, 235, 0.06);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .stats-row, .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .step::after { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(10, 14, 26, 0.98);
+                padding: 24px 32px;
+                border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            section { padding: 64px 20px; }
+            .cta-box { padding: 48px 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">Calibra<span>Data</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                Precision Digital Solutions
+            </div>
+            <h1>
+                We engineer digital<br>
+                <span class="gradient-text">experiences that perform</span>
+            </h1>
+            <p>
+                From stunning websites and frontend applications to bulletproof security and intelligent AI systems — CalibraData delivers solutions calibrated for impact.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Start Your Project →</a>
+                <a href="#services" class="btn btn-outline">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="container">
+            <span class="section-label">What We Do</span>
+            <h2 class="section-title">Full-spectrum digital solutions</h2>
+            <p class="section-subtitle">Every service precision-calibrated to your business needs. From concept to deployment and beyond.</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Website Development</h3>
+                    <p>Custom-built, responsive websites that convert visitors into customers. From landing pages to complex web platforms, designed for speed and impact.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Frontend Applications</h3>
+                    <p>Modern, interactive frontend apps built with React, Vue, and Angular. Pixel-perfect interfaces that deliver seamless user experiences across every device.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>SEO Optimization</h3>
+                    <p>Data-driven SEO strategies that boost your rankings and drive organic traffic. Technical audits, content optimization, and measurable results.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Security & Penetration Testing</h3>
+                    <p>Comprehensive security assessments and penetration testing. Identify vulnerabilities before attackers do. OWASP-aligned methodologies for complete protection.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI Applications</h3>
+                    <p>Custom AI solutions that transform your operations. From intelligent automation and chatbots to machine learning models and predictive analytics.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Performance & Scaling</h3>
+                    <p>Optimization and infrastructure solutions that keep your applications fast and reliable as you grow. Built for scale from day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div style="text-align:center">
+                <span class="section-label">Why CalibraData</span>
+                <h2 class="section-title">Precision you can measure</h2>
+                <p class="section-subtitle" style="margin:0 auto">We don't guess — we calibrate. Every solution is data-informed, rigorously tested, and built to deliver measurable outcomes.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime Guaranteed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3x</div>
+                    <div class="stat-label">Faster Load Times</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Vulnerabilities Found</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support & Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+        <div class="container">
+            <div style="text-align:center">
+                <span class="section-label">How We Work</span>
+                <h2 class="section-title">From brief to launch in four steps</h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Discover</h3>
+                    <p>We learn your business, goals, and challenges. Deep-dive research and technical auditing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Design</h3>
+                    <p>Strategy meets creativity. Wireframes, prototypes, and architecture tailored to your needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>Build</h3>
+                    <p>Clean code, modern stack, rigorous testing. We build with precision and speed.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3>Launch & Scale</h3>
+                    <p>Deploy, monitor, optimize. Continuous improvement backed by real-time data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH -->
+    <section class="tech">
+        <div class="container" style="text-align:center">
+            <span class="section-label">Technology</span>
+            <h2 class="section-title">Built with the best</h2>
+            <div class="tech-grid">
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Next.js</span>
+                <span class="tech-pill">Vue.js</span>
+                <span class="tech-pill">Angular</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">TensorFlow</span>
+                <span class="tech-pill">OpenAI</span>
+                <span class="tech-pill">AWS</span>
+                <span class="tech-pill">Docker</span>
+                <span class="tech-pill">Kubernetes</span>
+                <span class="tech-pill">PostgreSQL</span>
+                <span class="tech-pill">Burp Suite</span>
+                <span class="tech-pill">Metasploit</span>
+                <span class="tech-pill">Tailwind CSS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Ready to build something extraordinary?</h2>
+                <p>Let's talk about your next project. Whether it's a website, an app, or a full security audit — we've got you covered.</p>
+                <a href="mailto:info@calibradata.co.za" class="btn btn-primary">Get In Touch →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="logo">Calibra<span>Data</span></a>
+                <p>Precision-engineered digital solutions. Websites, apps, security, SEO, and AI — calibrated for your success.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Websites</a></li>
+                    <li><a href="#services">Frontend Apps</a></li>
+                    <li><a href="#services">SEO</a></li>
+                    <li><a href="#services">Security Testing</a></li>
+                    <li><a href="#services">AI Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#why-us">About</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 CalibraData. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('navLinks').classList.remove('open');
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .stat-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
